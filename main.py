@@ -17,13 +17,37 @@ logger.addHandler(file_handler)
 
 
 class File:
+    """The File class represent a document file
+    """
     def __init__(self, path: str) -> None:
+        """Method for initializing a File object
+
+        Arguments:
+            path {str}
+
+        Attributes:
+            path {str}: the absolute or relative filepath
+        """
         self.path = Path(path).absolute()
 
-    def convertToPng(self, remove: bool = False, poi: int = 1) -> None:
-        if poi < 1:
-            logger.error(f"poi (page of interest) must be greater than zero")
-            raise Exception("poi is a int starting from 1")
+    def convertToPng(self, remove: bool = False, poi: int = 0) -> None:
+        """Take the self.path and convert it to a PNG file
+        The file must be an Image or a PDF (Scanned or not)
+
+        Keyword Arguments:
+            remove {bool} -- Deletes the original file (default: {False})
+            poi {int} -- The Page OF Interest (POI)
+                from a PDF file (default: {0})
+
+        Returns: None
+
+        Raises:
+            Exception: The POI must be integer greater or equeal to 0
+        """
+
+        if poi < 0:
+            logger.error(f"poi (page of interest) must be positive")
+            raise Exception("poi must be a zero or positive int")
 
         filename = self.path
         new_filename = Path(''.join([
