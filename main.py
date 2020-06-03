@@ -83,7 +83,7 @@ class File:
             pdf.close()
 
         if remove:
-            filename.unlink(filename)
+            filename.unlink()
             logger.info("Originak file '{filename.name}' has been deleted")
         self.path = new_filename
 
