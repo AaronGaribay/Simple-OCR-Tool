@@ -1,8 +1,6 @@
 from PIL import Image
 import fitz
 
-import os
-import sys
 import imghdr
 import argparse
 import logging
@@ -30,7 +28,7 @@ class File:
         """
         self.path = Path(path).absolute()
 
-    def convertToPng(self, remove: bool = False, poi: int = 0) -> None:
+    def convert_to_png(self, remove: bool = False, poi: int = 0) -> None:
         """Take the self.path and convert it to a PNG file
         The file must be an Image or a PDF (Scanned or not)
 
@@ -110,4 +108,4 @@ if __name__ == "__main__":
 
     args = vars(ap.parse_args())
     newFile = File(args['file'])
-    newFile.convertToPng()
+    newFile.convert_to_png()
